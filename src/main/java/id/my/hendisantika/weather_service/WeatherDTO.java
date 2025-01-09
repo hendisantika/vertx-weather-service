@@ -437,4 +437,43 @@ public class WeatherDTO {
       this.avg = avg;
     }
   }
+
+  public static class SnowLine {
+    private Object avg;
+    private Object min;
+    private Object max;
+    private String unit;
+
+    public Object getAvg() {
+      return avg;
+    }
+
+    public void setAvg(Object avg) {
+      this.avg = avg;
+    }
+
+    public Object getMin() {
+      return min;
+    }
+
+    public void setMin(Object min) {
+      this.min = min;
+    }
+
+    public Object getMax() {
+      return max;
+    }
+
+    public void setMax(Object max) {
+      this.max = max;
+    }
+
+    public String getUnit() {
+      return unit;
+    }
+
+    public void setUnit(String unit) {
+      this.unit = unit;
+    }
+  }
 }
