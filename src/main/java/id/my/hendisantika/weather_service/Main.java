@@ -117,5 +117,29 @@ public class Main {
       return future;
     }
 
+    private CompletableFuture<String> fetchHourApiData(Map<String, String> headers) {
+      CompletableFuture<String> future = new CompletableFuture<>();
+
+      // Build the request with dynamic headers
+      org.asynchttpclient.RequestBuilder requestBuilder = new org.asynchttpclient.RequestBuilder("GET")
+        .setUrl("https://forecast9.p.rapidapi.com/rapidapi/forecast/Berlin/hourly/");
+      headers.forEach(requestBuilder::addHeader);
+
+      asyncHttpClient.executeRequest(requestBuilder.build())
+        .toCompletableFuture()
+        .thenAccept(response -> {
+//                        if (response.getStatusCode() == 200) {
+          future.complete(response.getResponseBody());
+//                        } else {
+//                            future.completeExceptionally(new RuntimeException("Failed to fetch hourly data"));
+//                        }
+        }).exceptionally(ex -> {
+          future.completeExceptionally(ex);
+          return null;
+        });
+
+      return future;
+    }
+
   }
 }
