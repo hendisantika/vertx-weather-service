@@ -476,4 +476,97 @@ public class WeatherDTO {
       this.unit = unit;
     }
   }
+
+  public static class Astronomy {
+    private String dawn;
+    private String sunrise;
+    private String suntransit;
+    private String sunset;
+    private String dusk;
+    private String moonrise;
+    private String moontransit;
+    private String moonset;
+    private int moonphase;
+    private int moonzodiac;
+
+    public String getDawn() {
+      return dawn;
+    }
+
+    public void setDawn(String dawn) {
+      this.dawn = dawn;
+    }
+
+    public String getSunrise() {
+      return sunrise;
+    }
+
+    public void setSunrise(String sunrise) {
+      this.sunrise = sunrise;
+    }
+
+    public String getSuntransit() {
+      return suntransit;
+    }
+
+    public void setSuntransit(String suntransit) {
+      this.suntransit = suntransit;
+    }
+
+    public String getSunset() {
+      return sunset;
+    }
+
+    public void setSunset(String sunset) {
+      this.sunset = sunset;
+    }
+
+    public String getDusk() {
+      return dusk;
+    }
+
+    public void setDusk(String dusk) {
+      this.dusk = dusk;
+    }
+
+    public String getMoonrise() {
+      return moonrise;
+    }
+
+    public void setMoonrise(String moonrise) {
+      this.moonrise = moonrise;
+    }
+
+    public String getMoontransit() {
+      return moontransit;
+    }
+
+    public void setMoontransit(String moontransit) {
+      this.moontransit = moontransit;
+    }
+
+    public String getMoonset() {
+      return moonset;
+    }
+
+    public void setMoonset(String moonset) {
+      this.moonset = moonset;
+    }
+
+    public int getMoonphase() {
+      return moonphase;
+    }
+
+    public void setMoonphase(int moonphase) {
+      this.moonphase = moonphase;
+    }
+
+    public int getMoonzodiac() {
+      return moonzodiac;
+    }
+
+    public void setMoonzodiac(int moonzodiac) {
+      this.moonzodiac = moonzodiac;
+    }
+  }
 }
