@@ -10,6 +10,7 @@ import org.asynchttpclient.AsyncHttpClientConfig;
 import org.asynchttpclient.Dsl;
 
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 /**
@@ -90,6 +91,30 @@ public class Main {
 //                    routingContext.response().setStatusCode(500).end("Failed to fetch data");
 //                }
       });
+    }
+
+    private CompletableFuture<String> fetchSummaryApiData(Map<String, String> headers) {
+      CompletableFuture<String> future = new CompletableFuture<>();
+
+      // Build the request with dynamic headers
+      org.asynchttpclient.RequestBuilder requestBuilder = new org.asynchttpclient.RequestBuilder("GET")
+        .setUrl("https://forecast9.p.rapidapi.com/rapidapi/forecast/Berlin/summary/");
+      headers.forEach(requestBuilder::addHeader);
+
+      asyncHttpClient.executeRequest(requestBuilder.build())
+        .toCompletableFuture()
+        .thenAccept(response -> {
+//                        if (response.getStatusCode() == 200) {
+          future.complete(response.getResponseBody());
+//                        } else {
+//                            future.completeExceptionally(new RuntimeException("Failed to fetch summary data"));
+//                        }
+        }).exceptionally(ex -> {
+          future.completeExceptionally(ex);
+          return null;
+        });
+
+      return future;
     }
 
   }
