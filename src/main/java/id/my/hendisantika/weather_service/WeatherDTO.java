@@ -278,4 +278,35 @@ public class WeatherDTO {
       this.precClass = precClass;
     }
   }
+
+  public static class Temperature {
+    private double min;
+    private double max;
+    private Object avg;
+
+    // Getters and setters
+    public double getMin() {
+      return min;
+    }
+
+    public void setMin(double min) {
+      this.min = min;
+    }
+
+    public double getMax() {
+      return max;
+    }
+
+    public void setMax(double max) {
+      this.max = max;
+    }
+
+    public Object getAvg() {
+      return avg;
+    }
+
+    public void setAvg(Object avg) {
+      this.avg = avg;
+    }
+  }
 }
