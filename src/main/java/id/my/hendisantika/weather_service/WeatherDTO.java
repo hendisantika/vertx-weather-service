@@ -238,4 +238,44 @@ public class WeatherDTO {
       this.icon = icon;
     }
   }
+
+  public static class Precipitation {
+    private double sum;
+    private int probability;
+    private Object sumAsRain;
+    private int precClass;
+
+    // Getters and setters
+    public double getSum() {
+      return sum;
+    }
+
+    public void setSum(double sum) {
+      this.sum = sum;
+    }
+
+    public int getProbability() {
+      return probability;
+    }
+
+    public void setProbability(int probability) {
+      this.probability = probability;
+    }
+
+    public Object getSumAsRain() {
+      return sumAsRain;
+    }
+
+    public void setSumAsRain(Object sumAsRain) {
+      this.sumAsRain = sumAsRain;
+    }
+
+    public int getPrecClass() {
+      return precClass;
+    }
+
+    public void setPrecClass(int precClass) {
+      this.precClass = precClass;
+    }
+  }
 }
