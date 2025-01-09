@@ -2,10 +2,15 @@ package id.my.hendisantika.weather_service;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
+import io.vertx.core.Vertx;
 import io.vertx.ext.web.Router;
+import io.vertx.ext.web.RoutingContext;
 import org.asynchttpclient.AsyncHttpClient;
 import org.asynchttpclient.AsyncHttpClientConfig;
 import org.asynchttpclient.Dsl;
+
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Created by IntelliJ IDEA.
@@ -44,5 +49,27 @@ public class Main {
           }
         });
     }
+
+    private void handleGetSummaryResource(RoutingContext routingContext) {
+      Map<String, String> headers = routingContext.request().headers().entries().stream()
+        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+      Vertx vertx = routingContext.vertx();
+      vertx.<String>executeBlocking(promise -> {
+        try {
+          String response = fetchSummaryApiData(headers).join(); // Use CompletableFuture's join
+          promise.complete(response);
+        } catch (Exception e) {
+          promise.fail(e);
+        }
+      }, res -> {
+//                if (res.succeeded()) {
+        routingContext.response().setStatusCode(200).end(res.result());
+//                } else {
+//                    routingContext.response().setStatusCode(500).end("Failed to fetch data");
+//                }
+      });
+    }
+
   }
 }
