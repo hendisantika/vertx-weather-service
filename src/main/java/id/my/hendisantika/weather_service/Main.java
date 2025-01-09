@@ -9,6 +9,7 @@ import org.asynchttpclient.AsyncHttpClient;
 import org.asynchttpclient.AsyncHttpClientConfig;
 import org.asynchttpclient.Dsl;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
@@ -139,6 +140,12 @@ public class Main {
         });
 
       return future;
+    }
+
+    @Override
+    public void stop(Promise<Void> stopPromise) throws IOException {
+      asyncHttpClient.close();
+      stopPromise.complete();
     }
 
   }
