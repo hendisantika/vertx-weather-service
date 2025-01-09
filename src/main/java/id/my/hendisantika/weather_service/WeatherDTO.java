@@ -569,4 +569,24 @@ public class WeatherDTO {
       this.moonzodiac = moonzodiac;
     }
   }
+
+  private Location location;
+  private Forecast forecast;
+
+  // Getters and setters
+  public Location getLocation() {
+    return location;
+  }
+
+  public void setLocation(Location location) {
+    this.location = location;
+  }
+
+  public Forecast getForecast() {
+    return forecast;
+  }
+
+  public void setForecast(Forecast forecast) {
+    this.forecast = forecast;
+  }
 }
