@@ -25,6 +25,11 @@ import java.util.stream.Collectors;
  * To change this template use File | Settings | File Templates.
  */
 public class Main {
+  public static void main(String[] args) {
+    Vertx vertx = Vertx.vertx();
+    vertx.deployVerticle(new MyVerticle());
+  }
+
   public static class MyVerticle extends AbstractVerticle {
     private AsyncHttpClient asyncHttpClient;
 
