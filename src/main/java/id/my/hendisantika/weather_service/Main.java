@@ -71,5 +71,26 @@ public class Main {
       });
     }
 
+    private void handleGetHourResource(RoutingContext routingContext) {
+      Map<String, String> headers = routingContext.request().headers().entries().stream()
+        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+      Vertx vertx = routingContext.vertx();
+      vertx.<String>executeBlocking(promise -> {
+        try {
+          String response = fetchHourApiData(headers).join(); // Use CompletableFuture's join
+          promise.complete(response);
+        } catch (Exception e) {
+          promise.fail(e);
+        }
+      }, res -> {
+//                if (res.succeeded()) {
+        routingContext.response().setStatusCode(200).end(res.result());
+//                } else {
+//                    routingContext.response().setStatusCode(500).end("Failed to fetch data");
+//                }
+      });
+    }
+
   }
 }
