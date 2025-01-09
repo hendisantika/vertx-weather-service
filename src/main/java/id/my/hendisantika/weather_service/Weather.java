@@ -1,5 +1,7 @@
 package id.my.hendisantika.weather_service;
 
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * Project : weather-service
@@ -70,6 +72,19 @@ public class Weather {
 
     public void setLongitude(double longitude) {
       this.longitude = longitude;
+    }
+  }
+
+  public static class Forecast {
+    private List<ForecastItem> items;
+
+    // Getters and setters
+    public List<ForecastItem> getItems() {
+      return items;
+    }
+
+    public void setItems(List<ForecastItem> items) {
+      this.items = items;
     }
   }
 }
