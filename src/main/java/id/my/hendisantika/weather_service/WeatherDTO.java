@@ -384,4 +384,26 @@ public class WeatherDTO {
       this.significationWind = significationWind;
     }
   }
+
+  public static class Gusts {
+    private double value;
+    private Object text;
+
+    // Getters and setters
+    public double getValue() {
+      return value;
+    }
+
+    public void setValue(double value) {
+      this.value = value;
+    }
+
+    public Object getText() {
+      return text;
+    }
+
+    public void setText(Object text) {
+      this.text = text;
+    }
+  }
 }
