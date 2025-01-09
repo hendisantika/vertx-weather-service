@@ -309,4 +309,79 @@ public class WeatherDTO {
       this.avg = avg;
     }
   }
+
+  public static class Wind {
+    private String unit;
+    private String direction;
+    private String text;
+    private Object avg;
+    private double min;
+    private double max;
+    private Gusts gusts;
+    private boolean significationWind;
+
+    public String getUnit() {
+      return unit;
+    }
+
+    public void setUnit(String unit) {
+      this.unit = unit;
+    }
+
+    public String getDirection() {
+      return direction;
+    }
+
+    public void setDirection(String direction) {
+      this.direction = direction;
+    }
+
+    public String getText() {
+      return text;
+    }
+
+    public void setText(String text) {
+      this.text = text;
+    }
+
+    public Object getAvg() {
+      return avg;
+    }
+
+    public void setAvg(Object avg) {
+      this.avg = avg;
+    }
+
+    public double getMin() {
+      return min;
+    }
+
+    public void setMin(double min) {
+      this.min = min;
+    }
+
+    public double getMax() {
+      return max;
+    }
+
+    public void setMax(double max) {
+      this.max = max;
+    }
+
+    public Gusts getGusts() {
+      return gusts;
+    }
+
+    public void setGusts(Gusts gusts) {
+      this.gusts = gusts;
+    }
+
+    public boolean isSignificationWind() {
+      return significationWind;
+    }
+
+    public void setSignificationWind(boolean significationWind) {
+      this.significationWind = significationWind;
+    }
+  }
 }
