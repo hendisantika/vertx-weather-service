@@ -35,7 +35,7 @@ dependencies {
 
 //  testImplementation platform("org.junit:junit-bom:5.10.0")
   testImplementation("org.junit.jupiter:junit-jupiter")
-  implementation("io.vertx:vertx-core:4.5.11")
+  implementation("io.vertx:vertx-core:4.5.12")
   implementation("io.vertx:vertx-web:4.5.12")
   implementation("com.squareup.retrofit2:retrofit:2.11.0")
   implementation("com.squareup.retrofit2:converter-gson:2.11.0")
