@@ -40,7 +40,7 @@ dependencies {
   implementation("com.squareup.retrofit2:retrofit:3.0.0")
   implementation("com.squareup.retrofit2:converter-gson:3.0.0")
   implementation("com.squareup.okhttp3:okhttp:5.1.0")
-  implementation("org.asynchttpclient:async-http-client:3.0.2")
+  implementation("org.asynchttpclient:async-http-client:3.0.3")
 
 }
 
