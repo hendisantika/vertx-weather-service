@@ -15,7 +15,7 @@ repositories {
 }
 
 val vertxVersion = "5.0.5"
-val junitJupiterVersion = "6.0.0"
+val junitJupiterVersion = "6.0.1"
 
 val mainVerticleName = "id.my.hendisantika.weather_service.MainVerticle"
 val launcherClassName = "io.vertx.core.Launcher"
