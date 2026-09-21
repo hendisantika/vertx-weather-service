@@ -14,7 +14,7 @@ repositories {
   mavenCentral()
 }
 
-val vertxVersion = "5.1.8"
+val vertxVersion = "5.2.0"
 val junitJupiterVersion = "6.1.3"
 
 val mainVerticleName = "id.my.hendisantika.weather_service.MainVerticle"
