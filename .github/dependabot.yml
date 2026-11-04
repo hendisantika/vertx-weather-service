@@ -1,13 +1,57 @@
 version: 2
 updates:
+  # Gradle dependencies (build.gradle.kts, Gradle wrapper & plugins)
   - package-ecosystem: gradle
     directory: "/"
     schedule:
       interval: daily
-      time: '05:00'
+      time: "05:00"
       timezone: Asia/Jakarta
     open-pull-requests-limit: 10
-  - package-ecosystem: "github-actions"
+    assignees:
+      - hendisantika
+    labels:
+      - dependencies
+      - java
+    commit-message:
+      prefix: "chore(deps)"
+      prefix-development: "chore(deps-dev)"
+      include: scope
+    groups:
+      vertx:
+        patterns:
+          - "io.vertx:*"
+      junit:
+        patterns:
+          - "org.junit*"
+      square:
+        patterns:
+          - "com.squareup.*"
+      gradle-plugins:
+        patterns:
+          - "com.gradleup.shadow*"
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
+
+  # GitHub Actions used in .github/workflows
+  - package-ecosystem: github-actions
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: daily
+      time: "05:00"
+      timezone: Asia/Jakarta
+    open-pull-requests-limit: 10
+    assignees:
+      - hendisantika
+    labels:
+      - dependencies
+      - github_actions
+    commit-message:
+      prefix: "ci(deps)"
+      include: scope
+    groups:
+      github-actions:
+        patterns:
+          - "*"
