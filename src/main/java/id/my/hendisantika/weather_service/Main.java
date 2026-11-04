@@ -1,6 +1,7 @@
 package id.my.hendisantika.weather_service;
 
 import io.vertx.core.AbstractVerticle;
+import io.vertx.core.Future;
 import io.vertx.core.Promise;
 import io.vertx.core.Vertx;
 import io.vertx.ext.web.Router;
@@ -46,7 +47,8 @@ public class Main {
 
       vertx.createHttpServer()
         .requestHandler(router)
-        .listen(8080, ar -> {
+        .listen(8080)
+        .onComplete(ar -> {
           if (ar.succeeded()) {
             System.out.println("Server started on port 8080");
             startPromise.complete();
@@ -61,42 +63,28 @@ public class Main {
       Map<String, String> headers = routingContext.request().headers().entries().stream()
         .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
-      Vertx vertx = routingContext.vertx();
-      vertx.<String>executeBlocking(promise -> {
-        try {
-          String response = fetchSummaryApiData(headers).join(); // Use CompletableFuture's join
-          promise.complete(response);
-        } catch (Exception e) {
-          promise.fail(e);
-        }
-      }, res -> {
-//                if (res.succeeded()) {
-        routingContext.response().setStatusCode(200).end(res.result());
-//                } else {
-//                    routingContext.response().setStatusCode(500).end("Failed to fetch data");
-//                }
-      });
+      Future.fromCompletionStage(fetchSummaryApiData(headers), routingContext.vertx().getOrCreateContext())
+        .onComplete(res -> {
+          if (res.succeeded()) {
+            routingContext.response().setStatusCode(200).end(res.result());
+          } else {
+            routingContext.response().setStatusCode(500).end("Failed to fetch data: " + res.cause().getMessage());
+          }
+        });
     }
 
     private void handleGetHourResource(RoutingContext routingContext) {
       Map<String, String> headers = routingContext.request().headers().entries().stream()
         .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
-      Vertx vertx = routingContext.vertx();
-      vertx.<String>executeBlocking(promise -> {
-        try {
-          String response = fetchHourApiData(headers).join(); // Use CompletableFuture's join
-          promise.complete(response);
-        } catch (Exception e) {
-          promise.fail(e);
-        }
-      }, res -> {
-//                if (res.succeeded()) {
-        routingContext.response().setStatusCode(200).end(res.result());
-//                } else {
-//                    routingContext.response().setStatusCode(500).end("Failed to fetch data");
-//                }
-      });
+      Future.fromCompletionStage(fetchHourApiData(headers), routingContext.vertx().getOrCreateContext())
+        .onComplete(res -> {
+          if (res.succeeded()) {
+            routingContext.response().setStatusCode(200).end(res.result());
+          } else {
+            routingContext.response().setStatusCode(500).end("Failed to fetch data: " + res.cause().getMessage());
+          }
+        });
     }
 
     private CompletableFuture<String> fetchSummaryApiData(Map<String, String> headers) {
